@@ -15,13 +15,25 @@ export default defineComponent({
             if (!userLocation.value) throw new Error('userlocation no existe');
 
             await Promise.resolve()
-            
+
             const map = new Mapboxgl.Map({
                 container: mapElement.value!,
                 style: 'mapbox://styles/mapbox/streets-v11', // style URL
                 center: userLocation.value,
                 zoom: 15, // starting zoom
             });
+
+            const myLocationPopUp = new Mapboxgl.Popup()
+                .setLngLat(userLocation.value)
+                .setHTML(`
+                <h4>Ubicación actual</h4>
+                <p>${userLocation.value}</p>
+                `)
+
+            const myLocationMarker = new Mapboxgl.Marker()
+                .setLngLat(userLocation.value)
+                .setPopup(myLocationPopUp)
+                .addTo(map)
         }
 
         onMounted( () => {
