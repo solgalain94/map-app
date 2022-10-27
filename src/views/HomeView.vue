@@ -1,19 +1,25 @@
 <template>
   <MapView/>
+  <SearchBar/>
+  <MyLocationBtn/>
 </template>
 
 <script lang="ts">
-import { usePlacesStore } from '@/composables';
 import { defineComponent } from 'vue';
+import {  usePlacesStore } from '@/composables';
 import MapView from '@/components/mapview/MapView.vue';
+import MyLocationBtn from '@/components/my-location-btn/MyLocationBtn.vue';
+import SearchBar from '@/components/search-bar/SearchBar.vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    MapView
+    MapView,
+    MyLocationBtn,
+    SearchBar
 },
   setup(){
-    usePlacesStore()
+   usePlacesStore();
   }
 });
 </script>
